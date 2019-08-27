@@ -29,6 +29,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 
     <build>
@@ -40,4 +41,27 @@
         </plugins>
     </build>
 
+    <!-- 单独配置仓库地址 -->
+    <repositories>
+        <repository>
+            <!--仓库ID要保证唯一，如果填写相同的仓库ID，将会覆盖，自带的中央仓库ID为central-->
+            <id>jboss</id>
+<!--            名称无所谓，可以重复-->
+            <name>JBoss Public Repository Group</name>
+<!--            仓库地址，一般都是http协议-->
+            <url>http://repository.jboss.org/nexus/content/groups/public</url>
+            <releases>
+<!--                releases下的enabled设置为true，表示开启发布版本的下载-->
+                <enabled>true</enabled>
+<!--                表示从远程仓库检查更新的频率，never:不检查，always:每次构建都检查，interval:x 每隔x分钟检查一次-->
+                <updatePolicy>never</updatePolicy>
+<!--                表示检查校验文件的策略，即校验和验证失败后，如何处理：warn:输出警告信息，fail:构建失败，ignore:忽略-->
+                <checksumPolicy>ignore</checksumPolicy>
+            </releases>
+            <snapshots>
+<!--                snapshots下的enabled设置为true，表示关闭快照版本的下载-->
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 </project>
